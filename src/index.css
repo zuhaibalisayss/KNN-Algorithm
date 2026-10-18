@@ -1,0 +1,446 @@
+@import "tailwindcss";
+
+/* ===== Custom Properties ===== */
+:root {
+  --color-bg: #F8F7F3;
+  --color-text: #202124;
+  --color-text-secondary: #65676B;
+  --color-accent: #315A85;
+  --color-class-b: #C76A52;
+  --color-border: #DEDED8;
+  --color-code-bg: #F0EFEB;
+  --font-body: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --max-reading-width: 720px;
+  --max-container-width: 1100px;
+}
+
+/* ===== Base Styles ===== */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Presentation Mode ===== */
+.presentation-mode {
+  font-size: 20px;
+}
+
+.presentation-mode h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
+}
+
+.presentation-mode h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important;
+}
+
+.presentation-mode h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem) !important;
+}
+
+.presentation-mode p,
+.presentation-mode li {
+  font-size: 1.15em;
+  line-height: 1.8;
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing: -0.01em;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  max-width: var(--max-reading-width);
+}
+
+/* ===== Section Styling ===== */
+.section {
+  padding: 4rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-inner {
+  max-width: var(--max-container-width);
+  margin: 0 auto;
+}
+
+.reading-width {
+  max-width: var(--max-reading-width);
+}
+
+/* ===== Code and Formula Blocks ===== */
+.formula-block {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  font-family: "SF Mono", "Fira Code", "Fira Mono", Menlo, monospace;
+  font-size: 0.95em;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.inline-code {
+  background: var(--color-code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-family: "SF Mono", "Fira Code", Menlo, monospace;
+  font-size: 0.9em;
+}
+
+/* ===== Table Styles ===== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95em;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table th {
+  font-weight: 600;
+  background: var(--color-code-bg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.data-table tr:hover td {
+  background: rgba(49, 90, 133, 0.03);
+}
+
+/* ===== Interactive Controls ===== */
+.control-panel {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.slider-container input[type="range"] {
+  flex: 1;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--color-border);
+  border-radius: 3px;
+  outline: none;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.slider-container input[type="range"]:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: var(--color-code-bg);
+  border-color: var(--color-text-secondary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: #2a4d73;
+}
+
+/* ===== SVG Plot Styles ===== */
+.plot-container {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.plot-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== Result Panel ===== */
+.result-panel {
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.result-panel .result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.result-panel .result-item:last-child {
+  border-bottom: none;
+}
+
+.result-panel .result-label {
+  color: var(--color-text-secondary);
+  font-size: 0.9em;
+}
+
+.result-panel .result-value {
+  font-weight: 600;
+}
+
+/* ===== Quiz Styles ===== */
+.quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.quiz-option:hover {
+  border-color: var(--color-accent);
+  background: rgba(49, 90, 133, 0.03);
+}
+
+.quiz-option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.quiz-option.selected {
+  border-color: var(--color-accent);
+  background: rgba(49, 90, 133, 0.06);
+}
+
+.quiz-option.correct {
+  border-color: #2d7d46;
+  background: rgba(45, 125, 70, 0.08);
+}
+
+.quiz-option.incorrect {
+  border-color: var(--color-class-b);
+  background: rgba(199, 106, 82, 0.08);
+}
+
+/* ===== Navigation ===== */
+.toc-link {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.toc-link:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+/* ===== Class Colors ===== */
+.class-a {
+  color: var(--color-accent);
+}
+
+.class-b {
+  color: var(--color-class-b);
+}
+
+.bg-class-a {
+  background-color: var(--color-accent);
+}
+
+.bg-class-b {
+  background-color: var(--color-class-b);
+}
+
+/* ===== Scroll Cue ===== */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.scroll-cue {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+  }
+}
+
+/* ===== Checklist ===== */
+.checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.checklist li {
+  padding: 0.5rem 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.checklist li::before {
+  content: "☐";
+  position: absolute;
+  left: 0;
+  color: var(--color-text-secondary);
+}
+
+.checklist li.checked::before {
+  content: "☑";
+  color: var(--color-accent);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .section {
+    padding: 2.5rem 1rem;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+  
+  .data-table {
+    font-size: 0.85em;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem 0.6rem;
+  }
+  
+  .control-panel {
+    padding: 1rem;
+  }
+}
+
+/* ===== Focus Styles ===== */
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(49, 90, 133, 0.15);
+}
